@@ -156,6 +156,11 @@
         return
       }
 
+      if (word5.indexOf(guess.toLowerCase()) == -1) {
+        alert("Не знаю такого слова. Введите существующее слово на русском языке")
+        return
+      }
+
       for (let i=0; i<guess.length; i++) {
 
         const currLetter = getActiveGameField().querySelector(`:nth-child(${i+1})`)

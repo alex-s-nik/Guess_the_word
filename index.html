@@ -45,6 +45,15 @@
     .example_description {
       padding-left: 20px;
     }
+    .hide {
+      display: none;
+    }
+    #spoiler {
+      cursor: pointer;
+    }
+    .spoiler_arrow {
+      font-size: 60%;
+    }
   </style>
   <title>Document</title>
 </head>
@@ -64,10 +73,11 @@
       <input type="button" value="Угадать!" id="guess-button">
     </div>
     <div class="rules">
-      <h3>Правила</h3>
-      <p>Загадано слово из пяти букв. Слово состоит из букв русского языка. Необходимо угадать его за наименьшее число попыток. 
-        При каждой попытке система подсказывает, какие буквы из предложенного слова есть в загаданном, 
-        а каких нет, подсвечивая эти буквы определенным образом.</p>
+      <h3 id="spoiler">Правила <span class="spoiler_arrow">&#9660;</span></h3>
+      <div class="rules_field hide">
+        <p>Загадано слово из пяти букв. Слово состоит из букв русского языка. Необходимо угадать его за наименьшее число попыток. 
+          При каждой попытке система подсказывает, какие буквы из предложенного слова есть в загаданном, 
+          а каких нет, подсвечивая эти буквы определенным образом.</p>
         <p>Также, если буква угадано правильно, и таких букв в загаданном слове не одна, появляется подсказка в виде индекса.</p>
         <div class="examples">
           <div class="example_row">
@@ -87,6 +97,7 @@
             <p class="example_description">Буква "Г" угадана правильно, в загаданном слове их две.</p>
           </div>
         </div>
+      </div>
     </div>
   </div>
 
@@ -210,6 +221,8 @@
     const guessWord = document.getElementById("guess-word")
     const keyboardEl = document.getElementById("keyboard")
     const gameField = document.getElementById("game-field")
+    const spoilerPoint = document.getElementById("spoiler")
+    const helpField = document.querySelector(".rules_field")
 
     init = () => 
     {
@@ -225,6 +238,8 @@
         }
       })
       guessWord.focus()
+
+      spoilerPoint.addEventListener("click", ()=> helpField.classList.toggle("hide"))
     }
   </script>
   <script>
